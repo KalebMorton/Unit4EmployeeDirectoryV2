@@ -4,6 +4,8 @@ export default app;
 
 import employees from "#db/employees";
 
+app.use(express.json());
+
 app.route("/").get((req, res) => {
   res.send("Hello employees!");
 });
@@ -32,3 +34,8 @@ app.route("/employees/:id").get((req, res) => {
 
   res.send(employee);
 });
+
+app.use((err, req, res, next) => {
+  console.error(err)
+  res.status(500).send("code no work")
+})
